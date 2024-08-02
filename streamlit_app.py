@@ -52,35 +52,3 @@ y_pred = model.predict(X_test)
 st.subheader("Model Performance")
 st.write("Mean Squared Error:", mean_squared_error(y_test, y_pred))
 st.write("R^2 Score:", r2_score(y_test, y_pred))
-
-
-        # Graphic Plots
-        st.header('Graphic Plots')
-        plotGenerator = GraphicGenerator(df)
-
-        checked_pairplot = st.checkbox('PairPlot')
-        checked_scatterPlot = st.checkbox('ScatterPlot')
-        checked_correlationPlot = st.checkbox('Correlation')
-        checked_logisticRegPlot = st.checkbox('LogisticRegPlot')
-
-        if checked_pairplot:
-            plotGenerator.pairplot()
-            st.markdown('<hr/>', unsafe_allow_html=True)
-
-        if checked_scatterPlot:
-            plotGenerator.scatterplot()
-            st.markdown('<hr/>', unsafe_allow_html=True)
-
-        if checked_correlationPlot:
-            plotGenerator.correlationPlot()
-            st.markdown('<hr/>', unsafe_allow_html=True)
-
-        if checked_logisticRegPlot:
-            plotGenerator.logisticRegressionPlot()
-            st.markdown('<hr/>', unsafe_allow_html=True)
-
-        # Logistic Regression
-        st.header('Logistic Regression')
-        regressor = LogisticRegressor(df)
-        regressor.logistic()
-        st.markdown('<hr/>', unsafe_allow_html=True)
