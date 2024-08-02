@@ -75,7 +75,7 @@ st.header("Questions")
 st.write("Open Floor for Questions")
 
         # Logistic Regression
-        st.header('Logistic Regression')
+        st.header("Logistic Regression")
         regressor = LogisticRegressor(df)
         regressor.logistic()
         st.markdown('<hr/>', unsafe_allow_html=True)
