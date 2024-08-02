@@ -3,9 +3,7 @@ from DataProcessor.DataLoader import DataLoader
 from DataProcessor.DataEvaluator import DataEvaluator
 from DataProcessor.GraphicGenerator import GraphicGenerator
 from DataProcessor.LogisticRegressor import LogisticRegressor
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
 
 class LogisticRegressor:
     def __init__(self, df):
