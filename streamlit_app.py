@@ -2,7 +2,7 @@ import streamlit as st
 from DataProcessor.DataLoader import DataLoader
 from DataProcessor.DataEvaluator import DataEvaluator
 from DataProcessor.GraphicGenerator import GraphicGenerator
-from DataProcessor.LogisticRegressor import LogisticRegressoion
+from DataProcessor.LogisticRegression import LogisticRegression
 
 # To run the APP: streamlit run streamlit_app.py
 if __name__ == '__main__':
