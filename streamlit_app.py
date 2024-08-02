@@ -1,80 +1,44 @@
-
-
 import streamlit as st
+import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 
-# Title and Introduction
-st.title("Solar Power Plant Analysis")
-st.write("### Insights and Findings")
-st.write("**Your Name**")
-st.write("**Date**")
+# Title
+st.title("Solar Power Generation Prediction")
 
-st.header("Introduction")
-st.write("Overview of Solar Power Plants")
-st.write("Importance of Solar Energy")
-st.write("Objectives of the Analysis")
+# Load data
+@st.cache
+def load_data():
+    return pd.read_csv('/path/to/solarpowergeneration.csv')
 
-st.header("Data Overview")
-st.write("Description of the Dataset")
-st.write("Data Preparation")
+data = load_data()
 
-st.header("Exploratory Data Analysis (EDA)")
-st.write("Summary Statistics")
-st.write("Visualizations")
+# Display data
+if st.checkbox("Show raw data"):
+    st.write(data)
 
-# Example data
-time = np.arange(0, 24, 1)
-power_output = np.sin(time) + np.random.normal(0, 0.1, size=time.shape)
-temperature = 20 + 5 * np.sin(time / 24 * 2 * np.pi)
-
-# Plot power output
+# EDA: Display a histogram
+st.subheader("Distribution of Power Generated")
 fig, ax = plt.subplots()
-ax.plot(time, power_output, label='Power Output (kW)')
-ax.set_xlabel('Time (hours)')
-ax.set_ylabel('Power Output (kW)')
-ax.set_title('Solar Power Output Throughout the Day')
-ax.legend()
+ax.hist(data['power_generated'], bins=30)
 st.pyplot(fig)
 
-# Plot temperature
-fig, ax = plt.subplots()
-ax.plot(time, temperature, label='Temperature (°C)', color='orange')
-ax.set_xlabel('Time (hours)')
-ax.set_ylabel('Temperature (°C)')
-ax.set_title('Temperature Throughout the Day')
-ax.legend()
-st.pyplot(fig)
+# Feature Selection
+st.subheader("Select Features")
+features = st.multiselect("Features", data.columns[:-1], default=list(data.columns[:-1]))
 
-st.header("Model Building")
-st.write("Model Selection")
-st.write("Feature Engineering")
-st.write("Model Training and Validation")
+# Train/Test Split
+X = data[features]
+y = data['power_generated']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-st.header("Model Evaluation")
-st.write("Accuracy: [Insert accuracy]")
-st.write("Root Mean Square Error (RMSE): [Insert RMSE]")
-st.write("Mean Absolute Error (MAE): [Insert MAE]")
-st.write("Confusion Matrix: [Include if applicable]")
-st.write("Precision, Recall, F1-Score: [Include if applicable]")
+# Model Training
+model = LinearRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
 
-st.header("Results")
-st.write("Model Performance")
-st.write("Key Findings")
-
-st.header("Conclusion")
-st.write("Summary of Findings")
-st.write("Implications for Solar Power Plant Operations")
-st.write("Recommendations")
-
-st.header("Future Work")
-st.write("Potential Improvements")
-st.write("Additional Data or Models to Explore")
-
-st.header("Questions")
-st.write("Open Floor for Questions")
-# Logistic Regression
-st.header("Logistic Regression")
-regressor = LogisticRegressor(df)
-regressor.logistic()
-st.markdown('<hr/>', unsafe_allow_html=True)
+# Display Results
+st.subheader("Model Performance")
+st.write("Mean Squared Error:", mean_squared_error(y_test, y_pred))
+st.write("R^2 Score:", r2_score(y_test, y_pred))
