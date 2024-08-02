@@ -7,7 +7,7 @@ from DataProcessor.LogisticRegressor import LogisticRegressor
 # To run the APP: streamlit run streamlit_app.py
 if __name__ == '__main__':
     st.header('Logistic Regression')
-    st.markdown('*Author: Leonardo Simões*')
+    st.markdown('*Author: Keshab Chandra Padhi*')
 
     # Data Loader
     st.header('Data loader')
