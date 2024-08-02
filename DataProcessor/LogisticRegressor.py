@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 
 
-      class LogisticRegressor:
+      class LogisticRegression:
           def __init__(self, df):
            self.df = df
             self.model = LogisticRegression()
