@@ -10,7 +10,7 @@ st.title("Solar Power Generation Prediction")
 # Load data
 @st.cache
 def load_data():
-    return pd.read_csv('/path/to/solarpowergeneration.csv')
+    return pd.read_csv('solarpowergeneration.csv')
 
 data = load_data()
 
